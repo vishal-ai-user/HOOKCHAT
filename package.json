@@ -1,0 +1,19 @@
+{
+  "name": "hookchat",
+  "version": "1.0.0",
+  "description": "A futuristic chat interface for n8n webhooks",
+  "main": "app.js",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'No build step required for vanilla JS project'",
+    "lint": "echo 'No linter configured'",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": ["webhook", "chat", "n8n"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "devDependencies": {}
+}
