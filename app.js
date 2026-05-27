@@ -88,20 +88,23 @@ function renderSidebar() {
   let html = '';
   webhooks.forEach(w => {
     const isActive = w.id === activeId;
-    const masked = '•'.repeat(Math.min(w.url.length, 40));
+    const isUrlShown = urlVisible[w.id];
+    const displayUrl = isUrlShown ? w.url : '•'.repeat(Math.min(w.url.length, 40));
     html += `
       <div class="webhook-card ${isActive ? 'active' : ''}" data-id="${w.id}">
         <div class="webhook-card-header">
           <div class="webhook-name">${escHtml(w.name)}</div>
           <div class="webhook-card-actions">
             <button class="btn-icon" onclick="event.stopPropagation(); toggleUrl('${w.id}')" title="Show/hide URL">
-              <span id="eye-${w.id}">👁</span>
+              <img id="eye-${w.id}" src="src/view.ico" alt="Show/hide URL" class="${isUrlShown ? 'visible' : ''}">
             </button>
-            <button class="btn-icon delete" onclick="event.stopPropagation(); confirmDelete('${w.id}')" title="Delete">🗑</button>
+            <button class="btn-icon delete" onclick="event.stopPropagation(); confirmDelete('${w.id}')" title="Delete">
+              <img src="src/delete.ico" alt="Delete">
+            </button>
           </div>
         </div>
         <div class="webhook-url-row">
-          <div class="webhook-url-display" id="url-${w.id}">${masked}</div>
+          <div class="webhook-url-display" id="url-${w.id}">${displayUrl}</div>
         </div>
         <button class="btn-open-chat" onclick="event.stopPropagation(); openChat('${w.id}')">
           ${isActive ? '● CHATTING' : 'OPEN CHAT'}
@@ -122,10 +125,14 @@ function toggleUrl(id) {
   const eye = document.getElementById('eye-' + id);
   if (urlVisible[id]) {
     el.textContent = w.url;
-    eye.textContent = '🔒';
+    if (eye) {
+      eye.classList.add('visible');
+    }
   } else {
     el.textContent = '•'.repeat(Math.min(w.url.length, 40));
-    eye.textContent = '👁';
+    if (eye) {
+      eye.classList.remove('visible');
+    }
   }
 }
 

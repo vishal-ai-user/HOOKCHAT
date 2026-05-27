@@ -214,6 +214,25 @@ html, body {
   background: rgba(255, 68, 68, 0.1);
 }
 
+.btn-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  vertical-align: middle;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, filter 0.15s ease;
+}
+
+.btn-icon:hover img {
+  opacity: 1;
+}
+
+.btn-icon img.visible {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px var(--orange-glow));
+}
+
 .webhook-url-row {
   display: flex;
   align-items: center;
