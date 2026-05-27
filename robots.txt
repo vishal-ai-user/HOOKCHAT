@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hookchat-teal.vercel.app/sitemap.xml

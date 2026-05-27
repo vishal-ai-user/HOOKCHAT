@@ -3,9 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
-  <title>HookChat</title>
+  <title>HookChat — Futuristic UI Client for n8n Webhooks</title>
   <link rel="icon" href="src/icon.ico">
-  <meta name="description" content="A futuristic chat interface for n8n webhooks. Manage up to 5 webhook assistants and chat in real-time." />
+  <meta name="description" content="HookChat is a free, futuristic web interface to test, debug, and chat with your n8n AI webhook agents in real-time. Secure, fast, and uses local storage." />
+  <meta name="keywords" content="n8n webhook, chat client, ai agent UI, n8n agent chat, webhook tester, open source chat UI, hookchat" />
+  <link rel="canonical" href="https://hookchat-teal.vercel.app/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hookchat-teal.vercel.app/" />
+  <meta property="og:title" content="HookChat — Futuristic UI Client for n8n Webhooks" />
+  <meta property="og:description" content="A premium web interface to test and chat with n8n AI webhook assistants securely using local storage." />
+  <meta property="og:image" content="https://hookchat-teal.vercel.app/src/logo.svg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:url" content="https://hookchat-teal.vercel.app/" />
+  <meta name="twitter:title" content="HookChat — Futuristic UI Client for n8n Webhooks" />
+  <meta name="twitter:description" content="A premium web interface to test and chat with n8n AI webhook assistants securely." />
+  <meta name="twitter:image" content="https://hookchat-teal.vercel.app/src/logo.svg" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "HookChat",
+    "url": "https://hookchat-teal.vercel.app/",
+    "operatingSystem": "All",
+    "applicationCategory": "DeveloperApplication",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "A futuristic chat interface for n8n webhooks. Manage up to 5 webhook assistants and chat in real-time."
+  }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,7 +53,7 @@
     <div class="sidebar-header">
       <a href="index.html" class="sidebar-logo">
         <img class="sidebar-logo-icon" src="src/logo.svg" alt="HookChat Logo" />
-        <div class="sidebar-logo-text">HOOK<span>CHAT</span></div>
+        <h1 class="sidebar-logo-text">HOOK<span>CHAT</span></h1>
       </a>
       <button class="btn-add-webhook" id="btnAddWebhook" title="Add Webhook">+</button>
     </div>
