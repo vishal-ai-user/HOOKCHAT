@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HookChat — n8n Webhook Chat UI</title>
+  <meta name="description" content="A futuristic chat interface for n8n webhooks. Manage up to 5 webhook assistants and chat in real-time." />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="sidebar-logo">
+        <img class="sidebar-logo-icon" src="src/logo.svg" alt="HookChat Logo" />
+        <div class="sidebar-logo-text">HOOK<span>CHAT</span></div>
+      </a>
+      <button class="btn-add-webhook" id="btnAddWebhook" title="Add Webhook">+</button>
+    </div>
+
+    <div class="sidebar-list" id="sidebarList">
+      <!-- Webhook cards or empty state rendered here -->
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text" id="sidebarFooter">0 / 5 WEBHOOKS</div>
+    </div>
+  </aside>
+
+  <!-- SIDEBAR MOBILE BACKDROP -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- MAIN CHAT AREA -->
+  <main id="main">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <button class="btn-menu-toggle" id="btnMenuToggle">☰</button>
+        <div class="chat-assistant-indicator" id="chatIndicator" style="display:none;"></div>
+        <div class="chat-assistant-name" id="chatAssistantName">No Assistant Selected</div>
+      </div>
+      <div class="chat-header-right">
+        <a href="Docs.html" target="_blank" class="btn-docs" id="btnDocs">OPEN DOCS</a>
+        <button class="btn-clear-chat" id="btnClearChat" style="display:none;">CLEAR CHAT</button>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <!-- Messages or welcome/empty state rendered here -->
+    </div>
+
+    <div class="chat-input-bar" id="chatInputBar" style="display:none;">
+      <div class="chat-input-wrapper">
+        <textarea id="chatInput" placeholder="Type your message..." autocomplete="off" rows="1"></textarea>
+        <button class="btn-send" id="btnSend" title="Send">➤</button>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+  </main>
+</div>
+
+<!-- ADD WEBHOOK MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-title">Add Webhook</div>
+    <div class="modal-subtitle">Connect an n8n webhook assistant</div>
+    <div class="form-group">
+      <label class="form-label" for="inputName">Assistant Name</label>
+      <input type="text" class="form-input" id="inputName" placeholder="e.g. Support Bot" maxlength="40" />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputUrl">Webhook URL</label>
+      <input type="text" class="form-input" id="inputUrl" placeholder="https://your-n8n.com/webhook/..." />
+    </div>
+    <div class="modal-actions">
+      <button class="btn-modal cancel" id="btnModalCancel">CANCEL</button>
+      <button class="btn-modal save" id="btnModalSave">SAVE</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <h3 id="confirmTitle">Delete Webhook?</h3>
+    <p id="confirmText">This will remove the webhook and its chat history.</p>
+    <div class="modal-actions">
+      <button class="btn-modal cancel" id="btnConfirmCancel">CANCEL</button>
+      <button class="btn-modal danger" id="btnConfirmDelete">DELETE</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HookChat — Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --orange-primary: #FF6B00;
+      --orange-light: #FF8C00;
+      --orange-glow: rgba(255, 107, 0, 0.35);
+      --orange-glow-soft: rgba(255, 107, 0, 0.15);
+      --bg-deep: #0a0a0a;
+      --bg-panel: #111111;
+      --bg-card: #1a1a1a;
+      --bg-input: #1e1e1e;
+      --text-primary: #f0f0f0;
+      --text-secondary: #888888;
+      --text-muted: #555555;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-orange: rgba(255, 107, 0, 0.25);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --sidebar-width: 320px;
+      --header-height: 82.5px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Share Tech', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px 0 24px;
+      z-index: 100;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .header-logo-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .header-logo-text {
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+    }
+
+    .header-logo-text span {
+      color: var(--orange-primary);
+    }
+
+
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      display: flex;
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    /* ===== SIDEBAR NAVIGATION ===== */
+    nav {
+      width: var(--sidebar-width);
+      position: fixed;
+      top: var(--header-height);
+      bottom: 0;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border-subtle);
+      padding: 40px 24px;
+      overflow-y: auto;
+    }
+
+    nav h3 {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
+      display: block;
+      padding: 6px 0;
+    }
+
+    nav a:hover {
+      color: var(--orange-primary);
+      transform: translateX(4px);
+    }
+
+    /* ===== CONTENT AREA ===== */
+    main {
+      flex: 1;
+      padding: 50px 60px 80px;
+      margin-left: var(--sidebar-width);
+      max-width: 900px;
+    }
+
+    section {
+      margin-bottom: 60px;
+      scroll-margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 36px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-weight: normal;
+      color: var(--text-primary);
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: var(--orange-primary);
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-orange);
+      padding-bottom: 8px;
+      font-weight: normal;
+    }
+
+    h3 {
+      font-size: 16px;
+      color: var(--text-primary);
+      margin: 24px 0 12px;
+      font-weight: normal;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: var(--text-primary);
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: var(--border-subtle);
+      margin: 40px 0;
+    }
+
+    /* ===== CODE STYLING ===== */
+    code {
+      font-family: 'Share Tech Mono', monospace;
+      background: var(--bg-card);
+      color: var(--orange-light);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      overflow-x: auto;
+      margin: 20px 0;
+      position: relative;
+    }
+
+    pre code {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: #eaeaea;
+      font-size: 13.5px;
+      display: block;
+      line-height: 1.5;
+    }
+
+    .code-comment {
+      color: var(--text-muted);
+    }
+
+    .highlight-box {
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--orange-primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+      font-size: 15px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      nav {
+        display: none;
+      }
+      main {
+        margin-left: 0;
+        padding: 40px 24px;
+      }
+      header {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="header-logo">
+      <img class="header-logo-icon" src="src/logo.svg" alt="HookChat Logo" />
+      <div class="header-logo-text">HOOK<span>CHAT</span></div>
+    </a>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <div class="container">
+    
+    <!-- NAVIGATION SIDEBAR -->
+    <nav>
+      <h3>Contents</h3>
+      <ul>
+        <li><a href="#overview">1. Overview</a></li>
+        <li><a href="#setup-guide">2. Step-by-Step Setup Guide</a></li>
+        <li><a href="#n8n-config">3. n8n Webhook Configuration</a></li>
+        <li><a href="#cors-config">4. CORS Configuration</a></li>
+        <li><a href="#privacy-storage">5. Data Privacy & Storage</a></li>
+        <li><a href="#troubleshooting">6. Troubleshooting FAQ</a></li>
+      </ul>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <main>
+      <section>
+        <h1 id="top">HookChat Documentation</h1>
+        <p class="subtitle">A guide to configuring and connecting your n8n AI webhook assistants</p>
+      </section>
+
+      <!-- 1. OVERVIEW -->
+      <section id="overview">
+        <h2>1. Overview</h2>
+        <div class="highlight-box">
+          HookChat is a clean, modern web user interface designed to easily test, debug, and interact with your n8n webhook-based AI agents in real-time.
+        </div>
+        <p>
+          HookChat allows you to manage up to <strong>5 different webhook assistants</strong> simultaneously. All configurations and chat logs are stored directly in your browser's LocalStorage. This means your private webhook URLs and chat histories are 100% private and never shared with any external database or third-party servers.
+        </p>
+      </section>
+
+      <!-- 2. SETUP GUIDE -->
+      <section id="setup-guide">
+        <h2>2. Step-by-Step Setup Guide</h2>
+        <p>Follow these steps to configure your HookChat dashboard:</p>
+        
+        <h3>Step 1: Open HookChat</h3>
+        <p>Open the HookChat website URL in your web browser.</p>
+
+        <h3>Step 2: Add an Assistant</h3>
+        <p>In the top-left corner of the sidebar, click the <strong><code>+</code> (Add Webhook)</strong> button. In the modal that appears, enter:</p>
+        <ul>
+          <li><strong>Assistant Name:</strong> Name for your bot (e.g., <code>Support Bot</code>).</li>
+          <li><strong>Webhook URL:</strong> Paste the Production Webhook URL generated by your n8n workflow.</li>
+        </ul>
+
+        <h3>Step 3: Start Chatting</h3>
+        <p>Click <strong><code>OPEN CHAT</code></strong> on your new assistant's card in the sidebar. Type your message in the chat bar at the bottom and click the <strong><code>Send</code> (➤)</strong> button or press <code>Enter</code>.</p>
+
+        <h3>Step 4: Webhook Actions</h3>
+        <ul>
+          <li><strong>Show/Hide URL:</strong> Click the <strong>👁 (Eye)</strong> icon to toggle between masked (<code>••••</code>) and raw text mode.</li>
+          <li><strong>Delete Assistant:</strong> Click the <strong>🗑 (Trash)</strong> icon to delete a webhook and all its messages.</li>
+          <li><strong>Clear Chat:</strong> Click the <strong><code>CLEAR CHAT</code></strong> button in the top-right header to wipe the message history.</li>
+        </ul>
+      </section>
+
+      <!-- 3. N8N WEBHOOK CONFIGURATION -->
+      <section id="n8n-config">
+        <h2>3. n8n Webhook Configuration</h2>
+        <p>To make n8n communicate correctly with HookChat, design your n8n Workflow with the following structure:</p>
+        
+        <h3>A. Webhook Node Settings</h3>
+        <ul>
+          <li><strong>HTTP Method:</strong> <code>POST</code></li>
+          <li><strong>Path:</strong> Choose a custom path (e.g., <code>hookchat-assistant</code>)</li>
+          <li><strong>Response Mode:</strong> <code>On Received / Respond to Webhook</code></li>
+          <li><strong>Response Data:</strong> <code>All Entry Data</code> (or construct a custom response payload)</li>
+        </ul>
+
+        <h3>B. Request Body Payload</h3>
+        <p>HookChat sends the user's message inside the request body as JSON with the key <code>chatInput</code>:</p>
+        <pre><code>{
+  "chatInput": "Hello, how can you help me today?"
+}</code></pre>
+        <p>In your n8n workflow (e.g., in an <strong>AI Agent</strong> or <strong>Code</strong> node), retrieve the user's message using:</p>
+        <p><code>{{ $json.body.chatInput }}</code></p>
+
+        <h3>C. Response Payload</h3>
+        <p>HookChat expects your n8n workflow to return a JSON response containing either <code>output</code> or <code>message</code>. For example:</p>
+        <pre><code>{
+  "output": "This is the AI assistant's reply message!"
+}</code></pre>
+        <p>If your workflow returns a different format, HookChat will display the raw JSON as a string.</p>
+      </section>
+
+      <!-- 4. CORS CONFIGURATION -->
+      <section id="cors-config">
+        <h2>4. CORS Configuration (Critical)</h2>
+        <p>
+          Since HookChat runs inside a web browser, the browser will block requests to your n8n instance unless n8n allows <strong>Cross-Origin Resource Sharing (CORS)</strong>.
+        </p>
+        
+        <h3>How to fix CORS on n8n:</h3>
+        <p>If your n8n instance is self-hosted, you must set the following environment variables in your n8n server settings before running:</p>
+        
+        <pre><code><span class="code-comment"># Enforce settings configuration</span>
+N8N_ENFORCE_SETTINGS_FILE_FOR_USERS=true
+N8N_CROSS_ORIGIN_OPENER_POLICY=same-origin
+
+<span class="code-comment"># Allow CORS requests from the browser</span>
+N8N_DISABLE_CORS=false</code></pre>
+        <p>
+          If you host HookChat on a specific domain, ensure you allow requests from that origin inside your hosting environment or reverse proxy (like Nginx/Cloudflare).
+        </p>
+      </section>
+
+      <!-- 5. DATA PRIVACY & STORAGE -->
+      <section id="privacy-storage">
+        <h2>5. Data Privacy & Storage</h2>
+        <ul>
+          <li><strong>Where is data saved?</strong> Everything is stored inside your browser's local sandbox memory (<code>localStorage</code>).</li>
+          <li><strong>Does it survive restarts?</strong> Yes. Restarting your device or closing the browser will NOT delete your saved webhooks.</li>
+          <li><strong>What clears the data?</strong>
+            <ol>
+              <li>Manually clicking "Delete" or "Clear Chat" in the UI.</li>
+              <li>Clearing browser cookies and website site data.</li>
+              <li>Using Incognito/Private windows (data deletes automatically when the window is closed).</li>
+            </ol>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 6. TROUBLESHOOTING FAQ -->
+      <section id="troubleshooting">
+        <h2>6. Troubleshooting FAQ</h2>
+        
+        <h3>Q: Why do I get a "Failed to reach webhook" error?</h3>
+        <ol>
+          <li><strong>CORS Blocked:</strong> Open your browser console (<code>F12 -> Console</code>). If you see a red CORS error, apply the steps in CORS Configuration.</li>
+          <li><strong>Invalid URL:</strong> Make sure you copy/pasted the <strong>Production URL</strong>, not the test URL. Test URLs expire after 120 seconds in n8n.</li>
+          <li><strong>No Network:</strong> Ensure your device has an active internet connection and your n8n instance is online and reachable.</li>
+        </ol>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>
