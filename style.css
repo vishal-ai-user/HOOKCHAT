@@ -42,7 +42,8 @@ html, body {
 #app {
   display: flex;
   height: 100vh;
-  width: 100vw;
+  height: 100dvh;
+  width: 100%;
 }
 
 /* ===== SIDEBAR ===== */
@@ -986,6 +987,11 @@ html, body {
 
   .chat-input-wrapper textarea {
     max-height: 100px;
+  }
+
+  .chat-input-wrapper textarea,
+  .form-input {
+    font-size: 16px;
   }
 }
 
