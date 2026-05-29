@@ -439,7 +439,8 @@ btnMenuToggle.addEventListener('click', openSidebar);
 sidebarBackdrop.addEventListener('click', closeSidebar);
 
 chatInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
+  const isMobile = window.innerWidth <= 768;
+  if (e.key === 'Enter' && !e.shiftKey && !isMobile) {
     e.preventDefault();
     sendMessage();
   }
