@@ -298,11 +298,7 @@ function appendTypingIndicator() {
   div.id = 'typingRow';
   div.innerHTML = `
     <div>
-      <div class="msg-bubble">
-        <div class="typing-indicator">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
+      <div class="msg-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>
     </div>
   `;
   const inner = chatMessages.querySelector('.chat-messages-inner');
