@@ -162,6 +162,7 @@ function renderChat() {
     chatIndicator.style.display = 'none';
     chatInputBar.style.display = 'none';
     btnClearChat.style.display = 'none';
+    btnFeedback.style.display = 'inline-flex';
     chatMessages.innerHTML = `
       <div class="no-webhook-state">
         <img src="src/logo.svg" alt="HookChat Logo" class="landing-logo" />
@@ -206,6 +207,7 @@ function renderChat() {
     return;
   }
 
+  btnFeedback.style.display = 'none';
   chatAssistantName.textContent = w.name;
   chatIndicator.style.display = 'block';
   chatInputBar.style.display = 'block';
