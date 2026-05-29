@@ -280,6 +280,29 @@
       font-size: 15px;
     }
 
+    .btn-open {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 14px;
+      margin-left: 12px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      color: var(--orange-primary);
+      border: 1px solid var(--border-orange);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      vertical-align: middle;
+      font-family: 'Share Tech', sans-serif;
+    }
+
+    .btn-open:hover {
+      background: rgba(255, 107, 0, 0.1);
+      box-shadow: 0 0 15px var(--orange-glow-soft);
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
       nav {
@@ -344,7 +367,7 @@
         <p>Follow these steps to configure your HookChat dashboard:</p>
         
         <h3>Step 1: Open HookChat</h3>
-        <p>Open the HookChat website URL in your web browser.</p>
+        <p>Open the HookChat website URL in your web browser. <a href="index.html" target="_blank" class="btn-open">OPEN HOOKCHAT</a></p>
 
         <h3>Step 2: Add an Assistant</h3>
         <p>In the top-left corner of the sidebar, click the <strong><code>+</code> (Add Webhook)</strong> button. In the modal that appears, enter:</p>
@@ -361,6 +384,7 @@
           <li><strong>Show/Hide URL:</strong> Click the <strong>👁 (Eye)</strong> icon to toggle between masked (<code>••••</code>) and raw text mode.</li>
           <li><strong>Delete Assistant:</strong> Click the <strong>🗑 (Trash)</strong> icon to delete a webhook and all its messages.</li>
           <li><strong>Clear Chat:</strong> Click the <strong><code>CLEAR CHAT</code></strong> button in the top-right header to wipe the message history.</li>
+          <li><strong>Feedback Submission:</strong> Click the <strong><code>FEEDBACK</code></strong> button in the top-right header to share suggestions, ratings, or bug reports securely.</li>
         </ul>
       </section>
 
