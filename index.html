@@ -80,6 +80,7 @@
         <div class="chat-assistant-name" id="chatAssistantName">No Assistant Selected</div>
       </div>
       <div class="chat-header-right">
+        <button class="btn-docs" id="btnFeedback">FEEDBACK</button>
         <a href="Docs.html" target="_blank" class="btn-docs" id="btnDocs">OPEN DOCS</a>
         <button class="btn-clear-chat" id="btnClearChat" style="display:none;">CLEAR CHAT</button>
       </div>
@@ -129,6 +130,71 @@
     <div class="modal-actions">
       <button class="btn-modal cancel" id="btnConfirmCancel">CANCEL</button>
       <button class="btn-modal danger" id="btnConfirmDelete">DELETE</button>
+    </div>
+  </div>
+</div>
+
+<!-- FEEDBACK MODAL -->
+<div class="modal-overlay" id="feedbackOverlay">
+  <div class="modal">
+    <div id="feedbackFormContainer">
+      <div class="modal-title">Share Your Feedback</div>
+      <div class="modal-subtitle">We would love to hear your thoughts, suggestions, or bug reports!</div>
+      
+      <form id="feedbackForm">
+        <!-- Name -->
+        <div class="form-group">
+          <label class="form-label" for="feedbackName">Name</label>
+          <input type="text" class="form-input" id="feedbackName" placeholder="Enter your name" required maxlength="50" autocomplete="name" />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="feedbackEmail">Email</label>
+          <input type="email" class="form-input" id="feedbackEmail" placeholder="Enter your email" required autocomplete="email" />
+        </div>
+
+        <!-- Rating -->
+        <div class="form-group">
+          <label class="form-label">Rating</label>
+          <div class="rating-container">
+            <input type="radio" name="feedbackRating" id="feedStar5" value="5" required />
+            <label for="feedStar5" title="5 stars">★</label>
+            
+            <input type="radio" name="feedbackRating" id="feedStar4" value="4" />
+            <label for="feedStar4" title="4 stars">★</label>
+            
+            <input type="radio" name="feedbackRating" id="feedStar3" value="3" />
+            <label for="feedStar3" title="3 stars">★</label>
+            
+            <input type="radio" name="feedbackRating" id="feedStar2" value="2" />
+            <label for="feedStar2" title="2 stars">★</label>
+            
+            <input type="radio" name="feedbackRating" id="feedStar1" value="1" />
+            <label for="feedStar1" title="1 star">★</label>
+          </div>
+        </div>
+
+        <!-- Feedback Details -->
+        <div class="form-group">
+          <label class="form-label" for="feedbackDetails">Feedback Details</label>
+          <textarea class="form-input" id="feedbackDetails" placeholder="What did you like? What issues did you face?" required style="resize: vertical; min-height: 80px; height: 80px; line-height: 1.5;"></textarea>
+        </div>
+
+        <!-- Actions -->
+        <div class="modal-actions">
+          <button type="button" class="btn-modal cancel" id="btnFeedbackCancel">CANCEL</button>
+          <button type="submit" class="btn-modal save" id="btnFeedbackSubmit">SUBMIT</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Success Container inside Modal -->
+    <div id="feedbackSuccessContainer" style="display: none; text-align: center; padding: 10px 0;">
+      <div style="font-size: 44px; color: var(--orange-primary); margin-bottom: 15px; text-shadow: 0 0 15px var(--orange-glow);">✦</div>
+      <div class="modal-title">Feedback Submitted!</div>
+      <div class="modal-subtitle" style="margin-bottom: 25px;">Thank you for taking the time to help us improve HookChat.</div>
+      <button type="button" class="btn-modal save" id="btnFeedbackSuccessClose" style="width: 160px; margin: 0 auto; display: block;">CLOSE</button>
     </div>
   </div>
 </div>

@@ -35,6 +35,15 @@ const sidebar = $('#sidebar');
 const sidebarBackdrop = $('#sidebarBackdrop');
 const btnMenuToggle = $('#btnMenuToggle');
 
+// Feedback Modal Refs
+const btnFeedback = $('#btnFeedback');
+const feedbackOverlay = $('#feedbackOverlay');
+const btnFeedbackCancel = $('#btnFeedbackCancel');
+const feedbackForm = $('#feedbackForm');
+const feedbackFormContainer = $('#feedbackFormContainer');
+const feedbackSuccessContainer = $('#feedbackSuccessContainer');
+const btnFeedbackSuccessClose = $('#btnFeedbackSuccessClose');
+
 // ===== PERSISTENCE =====
 function save() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(webhooks));
@@ -155,9 +164,43 @@ function renderChat() {
     btnClearChat.style.display = 'none';
     chatMessages.innerHTML = `
       <div class="no-webhook-state">
-        <div class="nw-icon">💬</div>
-        <h2>Select a Webhook</h2>
-        <p>Choose or add a webhook from the sidebar to begin chatting.</p>
+        <img src="src/logo.svg" alt="HookChat Logo" class="landing-logo" />
+        <div class="landing-title">HOOK<span>CHAT</span></div>
+        <p class="landing-desc">
+          A Real-time chat interface to test and debug your n8n webhook-based AI agents.<br>Securely manage up to 5 webhook assistants with full chat logs saved locally.
+        </p>
+        <div class="landing-uses">
+          <div class="use-item">
+            <div class="use-icon">
+              <img src="src/realtime.ico" alt="Real-time Icon">
+            </div>
+            <div class="use-text">
+              <strong>Real-Time Sandbox</strong>
+              <p>Instantly execute HTTP requests and view AI responses with full typing previews.</p>
+            </div>
+          </div>
+          <div class="use-item">
+            <div class="use-icon">
+              <img src="src/secure.ico" alt="Secure Icon">
+            </div>
+            <div class="use-text">
+              <strong>Secured Local Storage</strong>
+              <p>Your webhook URLs and conversation logs are completely private and stored in browser memory.</p>
+            </div>
+          </div>
+          <div class="use-item">
+            <div class="use-icon">
+              <img src="src/agent.ico" alt="Agent Icon">
+            </div>
+            <div class="use-text">
+              <strong>Multi-Webhook Setup</strong>
+              <p>Simultaneously configure, edit, mask, and test up to 5 independent webhook connections.</p>
+            </div>
+          </div>
+        </div>
+        <div class="landing-action-info">
+          ◀ Select or add a Webhook agent from the sidebar to begin.
+        </div>
       </div>
     `;
     return;
@@ -419,6 +462,78 @@ inputUrl.addEventListener('keydown', (e) => {
 });
 inputName.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); inputUrl.focus(); }
+});
+
+// ===== FEEDBACK MODAL ACTIONS =====
+function openFeedbackModal() {
+  feedbackForm.reset();
+  feedbackFormContainer.style.display = 'block';
+  feedbackSuccessContainer.style.display = 'none';
+  const submitBtn = $('#btnFeedbackSubmit');
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'SUBMIT';
+  feedbackOverlay.classList.add('visible');
+  setTimeout(() => $('#feedbackName').focus(), 100);
+}
+
+function closeFeedbackModal() {
+  feedbackOverlay.classList.remove('visible');
+}
+
+btnFeedback.addEventListener('click', openFeedbackModal);
+btnFeedbackCancel.addEventListener('click', closeFeedbackModal);
+btnFeedbackSuccessClose.addEventListener('click', closeFeedbackModal);
+
+feedbackOverlay.addEventListener('click', (e) => {
+  if (e.target === feedbackOverlay) closeFeedbackModal();
+});
+
+feedbackForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = $('#feedbackName').value.trim();
+  const email = $('#feedbackEmail').value.trim();
+  const rating = document.querySelector('input[name="feedbackRating"]:checked')?.value;
+  const feedback = $('#feedbackDetails').value.trim();
+
+  if (!name || !email || !rating || !feedback) {
+    showToast('Please fill out all fields.');
+    return;
+  }
+
+  const submitBtn = $('#btnFeedbackSubmit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'SUBMITTING...';
+
+  // Formspree endpoint with user's ID
+  const formspreeEndpoint = 'https://formspree.io/f/mojbronp';
+
+  try {
+    const response = await fetch(formspreeEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        rating: rating + ' Stars',
+        feedback
+      })
+    });
+
+    if (response.ok) {
+      feedbackFormContainer.style.display = 'none';
+      feedbackSuccessContainer.style.display = 'block';
+    } else {
+      throw new Error('Failed to submit form.');
+    }
+  } catch (err) {
+    showToast('Failed to send feedback. Try again.');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'SUBMIT';
+  }
 });
 
 // ===== INIT =====
