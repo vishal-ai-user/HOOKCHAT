@@ -164,6 +164,7 @@
     /* ===== CONTENT AREA ===== */
     main {
       flex: 1;
+      min-width: 0;
       padding: 50px 60px 80px;
       margin-left: var(--sidebar-width);
       max-width: 900px;
@@ -314,6 +315,21 @@
       }
       header {
         padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 30px 16px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      pre {
+        padding: 12px;
       }
     }
   </style>
