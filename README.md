@@ -10,7 +10,6 @@
 [![HTML](https://img.shields.io/badge/HTML-38.9%25-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://github.com/vishal-ai-user/HOOKCHAT)
 [![CSS](https://img.shields.io/badge/CSS-35.4%25-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://github.com/vishal-ai-user/HOOKCHAT)
 [![JavaScript](https://img.shields.io/badge/JavaScript-25.7%25-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://github.com/vishal-ai-user/HOOKCHAT)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 </div>
 
@@ -175,12 +174,6 @@ Contributions, issues, and feature requests are welcome!
 ## Author
 
 **Vishal** — [@vishal-ai-user](https://github.com/vishal-ai-user)
-
----
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
